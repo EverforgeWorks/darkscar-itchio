@@ -1,0 +1,235 @@
+{
+  "archetypes": {
+    "martyr": {
+      "id": "martyr",
+      "name": "Martyr",
+      "description": "Primary Stat: Strength. A heavy hitting warrior who exchanges their own life for brutal damage skills.",
+      "threat": 4,
+      "proficiencies": {
+        "armor": ["leather", "chain"],
+        "weapons": [
+          "battleaxe",
+          "maul",
+          "spear_shield",
+          "longsword",
+          "hammer_sickle",
+          "sword_board",
+          "dual_axes",
+          "dual_daggers",
+          "hatchet_buckler"
+        ]
+      },
+      "starting_kit": {
+        "prefix_id": "adventurer",
+        "weapon_subtype": "longsword",
+        "armor_type": "leather"
+      },
+      "base_attributes": { "str": 120, "dex": 100, "int": 75, "wis": 90, "end": 120 },
+      "attribute_growth": { "str": 5, "dex": 3, "int": 1, "wis": 1, "end": 4 },
+      "attribute_relations": {
+        "str": { "patk": 3.5, "pdef": 1, "max_hp": 2.5, "acc": 1.5 },
+        "dex": { "patk": 0.5, "pdef": 0.5, "eva": 1, "acc": 1.5, "crit_hit": 0.5, "crit_dmg": 0.8 },
+        "int": { "matk": 0.2, "mdef": 0.5, "acc": 1, "crit_hit": 0.1, "crit_dmg": 0.1 },
+        "wis": { "matk": 0.5, "mdef": 1.5, "max_mp": 5.5, "mp_regen": 0.05 },
+        "end": { "pdef": 2.5, "mdef": 1.5, "max_hp": 3.5, "hp_regen": 0.15 }
+      }
+    },
+    "dreadnought": {
+      "id": "dreadnought",
+      "name": "Dreadnought",
+      "description": "Primary Stat: Strength. An armored behemoth built for frontline combat.",
+      "threat": 5,
+      "proficiencies": {
+        "armor": ["chain", "plate"],
+        "weapons": [
+          "sword_board",
+          "hatchet_buckler",
+          "spear_shield",
+          "battleaxe",
+          "maul",
+          "longsword"
+        ]
+      },
+      "starting_kit": {
+        "prefix_id": "adventurer",
+        "weapon_subtype": "sword_board",
+        "armor_type": "chain"
+      },
+      "base_attributes": { "str": 115, "dex": 80, "int": 70, "wis": 110, "end": 130 },
+      "attribute_growth": { "str": 4, "dex": 1, "int": 1, "wis": 3, "end": 5 },
+      "attribute_relations": {
+        "str": { "patk": 2.5, "pdef": 4, "max_hp": 1.5, "acc": 0.5 },
+        "dex": { "patk": 0.2, "pdef": 1, "eva": 0.5, "acc": 1, "crit_hit": 0.1, "crit_dmg": 0.2 },
+        "int": { "matk": 0, "mdef": 1, "acc": 0.5, "crit_hit": 0, "crit_dmg": 0 },
+        "wis": { "matk": 0.2, "mdef": 2.5, "max_mp": 5, "mp_regen": 0.04 },
+        "end": { "pdef": 5.5, "mdef": 3.5, "max_hp": 4.5, "hp_regen": 0.22 }
+      }
+    },
+    "dervish": {
+      "id": "dervish",
+      "name": "Dervish",
+      "description": "Primary Stat: Dexterity. A swift and agile fighter mastering evasion.",
+      "threat": 3,
+      "proficiencies": {
+        "armor": ["cloth", "leather"],
+        "weapons": [
+          "dual_daggers",
+          "dual_axes",
+          "bow",
+          "crossbow",
+          "hammer_sickle",
+          "throwing_knives"
+        ]
+      },
+      "starting_kit": {
+        "prefix_id": "traveler",
+        "weapon_subtype": "dual_daggers",
+        "armor_type": "cloth"
+      },
+      "base_attributes": { "str": 80, "dex": 130, "int": 105, "wis": 80, "end": 100 },
+      "attribute_growth": { "str": 3, "dex": 5, "int": 2, "wis": 1, "end": 3 },
+      "attribute_relations": {
+        "str": { "patk": 2.2, "pdef": 0.5, "max_hp": 1.5, "acc": 1 },
+        "dex": { "patk": 1.8, "pdef": 0.5, "eva": 4, "acc": 3.5, "crit_hit": 4, "crit_dmg": 4.8 },
+        "int": { "matk": 0.5, "mdef": 0.5, "acc": 2, "crit_hit": 3.5, "crit_dmg": 1.5 },
+        "wis": { "matk": 0.5, "mdef": 0.5, "max_mp": 5, "mp_regen": 0.05 },
+        "end": { "pdef": 1, "mdef": 1, "max_hp": 3.5, "hp_regen": 0.12 }
+      }
+    },
+    "dancer": {
+      "id": "dancer",
+      "name": "Dancer",
+      "description": "Primary Stat: Dexterity. A warrior of grace and discipline.",
+      "threat": 1,
+      "proficiencies": {
+        "armor": ["cloth", "leather"],
+        "weapons": ["staff", "hammer_sickle", "dual_daggers", "dual_axes", "bow", "throwing_knives"]
+      },
+      "starting_kit": {
+        "prefix_id": "traveler",
+        "weapon_subtype": "dual_axes",
+        "armor_type": "cloth"
+      },
+      "base_attributes": { "str": 90, "dex": 125, "int": 110, "wis": 105, "end": 75 },
+      "attribute_growth": { "str": 2, "dex": 5, "int": 3, "wis": 3, "end": 3 },
+      "attribute_relations": {
+        "str": { "patk": 1.5, "pdef": 1.5, "max_hp": 2.2, "acc": 1 },
+        "dex": { "patk": 1.2, "pdef": 0.8, "eva": 5, "acc": 3, "crit_hit": 4.4, "crit_dmg": 2 },
+        "int": { "matk": 1.5, "mdef": 2.5, "acc": 2.5, "crit_hit": 3, "crit_dmg": 3 },
+        "wis": { "matk": 1.5, "mdef": 3.5, "max_mp": 6.5, "mp_regen": 0.08 },
+        "end": { "pdef": 1.5, "mdef": 2, "max_hp": 5.5, "hp_regen": 0.18 }
+      }
+    },
+    "evoker": {
+      "id": "evoker",
+      "name": "Evoker",
+      "description": "Primary Stat: Intellect. A master of destructive magic.",
+      "threat": 3,
+      "proficiencies": {
+        "armor": ["cloth"],
+        "weapons": ["staff", "wand_orb", "hammer_sickle"]
+      },
+      "starting_kit": {
+        "prefix_id": "explorer",
+        "weapon_subtype": "staff",
+        "armor_type": "cloth"
+      },
+      "base_attributes": { "str": 80, "dex": 110, "int": 130, "wis": 110, "end": 75 },
+      "attribute_growth": { "str": 1, "dex": 2, "int": 6, "wis": 3, "end": 2 },
+      "attribute_relations": {
+        "str": { "patk": 0.5, "pdef": 0.5, "max_hp": 2, "acc": 0.5 },
+        "dex": {
+          "patk": 0.8,
+          "pdef": 0.5,
+          "eva": 1.5,
+          "acc": 2.5,
+          "crit_hit": 0.8,
+          "crit_dmg": 1.2
+        },
+        "int": { "matk": 5.5, "mdef": 2, "acc": 4, "crit_hit": 1, "crit_dmg": 1.5 },
+        "wis": { "matk": 2, "mdef": 2, "max_mp": 5, "mp_regen": 0.12 },
+        "end": { "pdef": 0.5, "mdef": 3, "max_hp": 4.5, "hp_regen": 0.15 }
+      }
+    },
+    "seer": {
+      "id": "seer",
+      "name": "Seer",
+      "description": "Primary Stat: Intellect. A powerful enchanter.",
+      "threat": 2,
+      "proficiencies": {
+        "armor": ["cloth"],
+        "weapons": ["staff", "wand_orb", "hammer_sickle", "dual_daggers"]
+      },
+      "starting_kit": {
+        "prefix_id": "explorer",
+        "weapon_subtype": "wand_orb",
+        "armor_type": "cloth"
+      },
+      "base_attributes": { "str": 75, "dex": 90, "int": 125, "wis": 115, "end": 100 },
+      "attribute_growth": { "str": 1, "dex": 2, "int": 5, "wis": 3, "end": 3 },
+      "attribute_relations": {
+        "str": { "patk": 0.8, "pdef": 1, "max_hp": 2, "acc": 1 },
+        "dex": { "patk": 0.2, "pdef": 0.5, "eva": 2, "acc": 2, "crit_hit": 0.8, "crit_dmg": 1 },
+        "int": { "matk": 3, "mdef": 4.5, "acc": 3.5, "crit_hit": 0.4, "crit_dmg": 0.5 },
+        "wis": { "matk": 2, "mdef": 5.5, "max_mp": 5.2, "mp_regen": 0.14 },
+        "end": { "pdef": 3, "mdef": 6, "max_hp": 4.5, "hp_regen": 0.12 }
+      }
+    },
+    "warden": {
+      "id": "warden",
+      "name": "Warden",
+      "description": "Primary Stat: Wisdom. A hybrid of melee prowess and magical skill.",
+      "threat": 4,
+      "proficiencies": {
+        "armor": ["leather", "chain", "plate"],
+        "weapons": [
+          "battleaxe",
+          "maul",
+          "longsword",
+          "dual_axes",
+          "bow",
+          "hatchet_buckler",
+          "spear_shield"
+        ]
+      },
+      "starting_kit": {
+        "prefix_id": "adventurer",
+        "weapon_subtype": "spear_shield",
+        "armor_type": "leather"
+      },
+      "base_attributes": { "str": 115, "dex": 75, "int": 90, "wis": 110, "end": 115 },
+      "attribute_growth": { "str": 3, "dex": 1, "int": 2, "wis": 4, "end": 5 },
+      "attribute_relations": {
+        "str": { "patk": 2.2, "pdef": 2.5, "max_hp": 2, "acc": 1.5 },
+        "dex": { "patk": 0.5, "pdef": 1, "eva": 1, "acc": 1.5, "crit_hit": 0.2, "crit_dmg": 0.3 },
+        "int": { "matk": 1, "mdef": 1.5, "acc": 1.5, "crit_hit": 0.1, "crit_dmg": 0.1 },
+        "wis": { "matk": 3.5, "mdef": 4, "max_mp": 6.5, "mp_regen": 0.12 },
+        "end": { "pdef": 3.5, "mdef": 3, "max_hp": 4.5, "hp_regen": 0.18 }
+      }
+    },
+    "saint": {
+      "id": "saint",
+      "name": "Saint",
+      "description": "Primary Stat: Wisdom. A disciplined healer and protector.",
+      "threat": 1,
+      "proficiencies": {
+        "armor": ["cloth"],
+        "weapons": ["staff", "wand_orb", "sword_board", "hammer_sickle"]
+      },
+      "starting_kit": {
+        "prefix_id": "explorer",
+        "weapon_subtype": "hammer_sickle",
+        "armor_type": "cloth"
+      },
+      "base_attributes": { "str": 75, "dex": 75, "int": 115, "wis": 125, "end": 115 },
+      "attribute_growth": { "str": 1, "dex": 1, "int": 3, "wis": 5, "end": 4 },
+      "attribute_relations": {
+        "str": { "patk": 0.5, "pdef": 2, "max_hp": 2, "acc": 0.5 },
+        "dex": { "patk": 0.1, "pdef": 0.5, "eva": 0.5, "acc": 1, "crit_hit": 0.1, "crit_dmg": 0.1 },
+        "int": { "matk": 1.5, "mdef": 2.5, "acc": 1, "crit_hit": 0.2, "crit_dmg": 0.2 },
+        "wis": { "matk": 2.5, "mdef": 6, "max_mp": 6.5, "mp_regen": 0.16 },
+        "end": { "pdef": 4, "mdef": 5, "max_hp": 4, "hp_regen": 0.2 }
+      }
+    }
+  }
+}
