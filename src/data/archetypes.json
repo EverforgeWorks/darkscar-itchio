@@ -22,7 +22,7 @@
       "starting_kit": {
         "prefix_id": "adventurer",
         "weapon_subtype": "longsword",
-        "armor_type": "leather"
+        "armor_slots": ["chest", "legs", "feet", "hands"]
       },
       "base_attributes": { "str": 120, "dex": 100, "int": 75, "wis": 90, "end": 120 },
       "attribute_growth": { "str": 5, "dex": 3, "int": 1, "wis": 1, "end": 4 },
@@ -51,9 +51,9 @@
         ]
       },
       "starting_kit": {
-        "prefix_id": "adventurer",
+        "prefix_id": "soldier",
         "weapon_subtype": "sword_board",
-        "armor_type": "chain"
+        "armor_slots": ["chest", "legs", "feet", "hands"]
       },
       "base_attributes": { "str": 115, "dex": 80, "int": 70, "wis": 110, "end": 130 },
       "attribute_growth": { "str": 4, "dex": 1, "int": 1, "wis": 3, "end": 5 },
@@ -84,7 +84,7 @@
       "starting_kit": {
         "prefix_id": "traveler",
         "weapon_subtype": "dual_daggers",
-        "armor_type": "cloth"
+        "armor_slots": ["chest", "legs", "feet", "hands"]
       },
       "base_attributes": { "str": 80, "dex": 130, "int": 105, "wis": 80, "end": 100 },
       "attribute_growth": { "str": 3, "dex": 5, "int": 2, "wis": 1, "end": 3 },
@@ -108,7 +108,7 @@
       "starting_kit": {
         "prefix_id": "traveler",
         "weapon_subtype": "dual_axes",
-        "armor_type": "cloth"
+        "armor_slots": ["chest", "legs", "feet", "hands"]
       },
       "base_attributes": { "str": 90, "dex": 125, "int": 110, "wis": 105, "end": 75 },
       "attribute_growth": { "str": 2, "dex": 5, "int": 3, "wis": 3, "end": 3 },
@@ -132,7 +132,7 @@
       "starting_kit": {
         "prefix_id": "explorer",
         "weapon_subtype": "staff",
-        "armor_type": "cloth"
+        "armor_slots": ["chest", "legs", "feet", "hands"]
       },
       "base_attributes": { "str": 80, "dex": 110, "int": 130, "wis": 110, "end": 75 },
       "attribute_growth": { "str": 1, "dex": 2, "int": 6, "wis": 3, "end": 2 },
@@ -163,7 +163,7 @@
       "starting_kit": {
         "prefix_id": "explorer",
         "weapon_subtype": "wand_orb",
-        "armor_type": "cloth"
+        "armor_slots": ["chest", "legs", "feet", "hands"]
       },
       "base_attributes": { "str": 75, "dex": 90, "int": 125, "wis": 115, "end": 100 },
       "attribute_growth": { "str": 1, "dex": 2, "int": 5, "wis": 3, "end": 3 },
@@ -195,7 +195,7 @@
       "starting_kit": {
         "prefix_id": "adventurer",
         "weapon_subtype": "spear_shield",
-        "armor_type": "leather"
+        "armor_slots": ["chest", "legs", "feet", "hands"]
       },
       "base_attributes": { "str": 115, "dex": 75, "int": 90, "wis": 110, "end": 115 },
       "attribute_growth": { "str": 3, "dex": 1, "int": 2, "wis": 4, "end": 5 },
@@ -219,7 +219,7 @@
       "starting_kit": {
         "prefix_id": "explorer",
         "weapon_subtype": "hammer_sickle",
-        "armor_type": "cloth"
+        "armor_slots": ["chest", "legs", "feet", "hands"]
       },
       "base_attributes": { "str": 75, "dex": 75, "int": 115, "wis": 125, "end": 115 },
       "attribute_growth": { "str": 1, "dex": 1, "int": 3, "wis": 5, "end": 4 },

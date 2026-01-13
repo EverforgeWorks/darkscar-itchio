@@ -1,0 +1,68 @@
+[
+  {
+    "id": "adventurer",
+    "name": "Adventurer's",
+    "base_value": 4,
+    "cost_mod": 25,
+    "contents": [
+      { "name": "Cap", "slot": "head", "type": "leather" },
+      { "name": "Vest", "slot": "chest", "type": "leather" },
+      { "name": "Gloves", "slot": "hands", "type": "leather" },
+      { "name": "Belt", "slot": "waist", "type": "leather" },
+      { "name": "Trousers", "slot": "legs", "type": "leather" },
+      { "name": "Boots", "slot": "feet", "type": "leather" },
+      { "name": "Daggers", "slot": "weapon", "type": "dual_daggers" },
+      { "name": "Sword and Shield", "slot": "weapon", "type": "sword_board" },
+      { "name": "Longsword", "slot": "weapon", "type": "longsword" },
+      { "name": "Spear and Shield", "slot": "weapon", "type": "spear_shield" }
+    ]
+  },
+  {
+    "id": "soldier",
+    "name": "Soldier's",
+    "base_value": 5,
+    "cost_mod": 30,
+    "contents": [
+      { "name": "Coif", "slot": "head", "type": "chain" },
+      { "name": "Hauberk", "slot": "chest", "type": "chain" },
+      { "name": "Gauntlets", "slot": "hands", "type": "chain" },
+      { "name": "Girdle", "slot": "waist", "type": "chain" },
+      { "name": "Chausses", "slot": "legs", "type": "chain" },
+      { "name": "Boots", "slot": "feet", "type": "chain" },
+      { "name": "Sword and Shield", "slot": "weapon", "type": "sword_board" }
+    ]
+  },
+  {
+    "id": "traveler",
+    "name": "Traveler's",
+    "base_value": 4,
+    "cost_mod": 20,
+    "contents": [
+      { "name": "Hood", "slot": "head", "type": "cloth" },
+      { "name": "Tunic", "slot": "chest", "type": "cloth" },
+      { "name": "Wraps", "slot": "hands", "type": "cloth" },
+      { "name": "Sash", "slot": "waist", "type": "cloth" },
+      { "name": "Leggings", "slot": "legs", "type": "cloth" },
+      { "name": "Boots", "slot": "feet", "type": "cloth" },
+      { "name": "Dual Daggers", "slot": "weapon", "type": "dual_daggers" },
+      { "name": "Dual Axes", "slot": "weapon", "type": "dual_axes" }
+    ]
+  },
+  {
+    "id": "explorer",
+    "name": "Explorer's",
+    "base_value": 4,
+    "cost_mod": 20,
+    "contents": [
+      { "name": "Cowl", "slot": "head", "type": "cloth" },
+      { "name": "Robe", "slot": "chest", "type": "cloth" },
+      { "name": "Gloves", "slot": "hands", "type": "cloth" },
+      { "name": "Sash", "slot": "waist", "type": "cloth" },
+      { "name": "Leggings", "slot": "legs", "type": "cloth" },
+      { "name": "Shoes", "slot": "feet", "type": "cloth" },
+      { "name": "Staff", "slot": "weapon", "type": "staff" },
+      { "name": "Wand and Orb", "slot": "weapon", "type": "wand_orb" },
+      { "name": "Hammer and Sickle", "slot": "weapon", "type": "hammer_sickle" }
+    ]
+  }
+]

@@ -1,0 +1,45 @@
+{
+  "rarity_mults": {
+    "mundane": 1,
+    "artisan": 1.2,
+    "rare": 1.4,
+    "legendary": 2
+  },
+  "material_mults": {
+    "cloth": 1,
+    "leather": 1.2,
+    "mail": 1.4,
+    "plate": 1.5
+  },
+  "subtype_data": {
+    "staff": { "dmg_mult": 2.2, "speed": 0.8, "value_mult": 1.5 },
+    "battleaxe": { "dmg_mult": 3.5, "speed": 0.5, "value_mult": 1.6 },
+    "crossbow": { "dmg_mult": 4.3, "speed": 0.4, "value_mult": 1.8 },
+    "dual_daggers": { "dmg_mult": 0.6, "speed": 2.8, "value_mult": 1 },
+    "maul": { "dmg_mult": 4.2, "speed": 0.4, "value_mult": 1.7 },
+    "spear_shield": { "dmg_mult": 2.3, "speed": 0.7, "value_mult": 1.3 },
+    "longsword": { "dmg_mult": 2, "speed": 0.8, "value_mult": 1.5 },
+    "hammer_sickle": { "dmg_mult": 1.1, "speed": 1.4, "value_mult": 1.1 },
+    "wand_orb": { "dmg_mult": 1.4, "speed": 1.1, "value_mult": 1.4 },
+    "sword_board": { "dmg_mult": 1.9, "speed": 0.8, "value_mult": 1.2 },
+    "dual_axes": { "dmg_mult": 0.8, "speed": 1.9, "value_mult": 1.2 },
+    "bow": { "dmg_mult": 1.8, "speed": 0.8, "value_mult": 1.4 },
+    "hatchet_buckler": { "dmg_mult": 1.2, "speed": 1.2, "value_mult": 1.1 },
+    "throwing_knives": { "dmg_mult": 0.6, "speed": 2.3, "value_mult": 0.9 }
+  },
+  "stat_conversion": {
+    "str": 1,
+    "dex": 1,
+    "int": 1,
+    "wis": 1,
+    "end": 1,
+    "eva": 1,
+    "acc": 1,
+    "patk": 2,
+    "pdef": 2,
+    "matk": 2,
+    "mdef": 2,
+    "max_hp": 4,
+    "max_mp": 4
+  }
+}
