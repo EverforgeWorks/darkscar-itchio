@@ -10,7 +10,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "format": "prettier --write --experimental-cli src/"
+    "format": "prettier --write --experimental-cli src/",
+    "deploy": "vite build && sudo rsync -av --delete dist/ /var/www/darkscar/"
   },
   "dependencies": {
     "pinia": "^3.0.4",

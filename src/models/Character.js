@@ -1,4 +1,6 @@
 import { calculateCharacterStats } from '@/utils/statCalculator'
+import { Item } from '@/models/Item'
+import { Core } from '@/models/Core'
 
 export class Character {
   constructor(id, name, archetypeId) {
@@ -11,26 +13,25 @@ export class Character {
     // Permanent bonuses (Elixirs, Quest Rewards)
     this.permanentBonuses = {}
 
-    // The Backpack
+    // The Backpack (Contains both Items and Cores)
     this.inventory = []
 
-    // The Paper Doll
+    // The Paper Doll (Full Slot List)
     this.equipment = {
       head: null,
       shoulders: null,
-      arms: null,
       chest: null,
+      arms: null,
       hands: null,
       waist: null,
       legs: null,
       feet: null,
-      weapon: null, // eventually weapon_main, weapon_off
-      // accessories later
+      weapon: null 
     }
   }
 
   /**
-   * Adds an Item instance to inventory
+   * Adds an Item or Core instance to inventory
    */
   addItem(item) {
     this.inventory.push(item)
@@ -47,9 +48,16 @@ export class Character {
     if (index === -1) return
 
     const newItem = this.inventory[index]
+    
+    // Safety Check: Can't equip a Core directly!
+    if (newItem instanceof Core) {
+      console.warn("Cannot equip a Core directly. Use a socketing action.")
+      return
+    }
+
     const slot = newItem.slot
 
-    // Check if slot exists
+    // Check if slot exists on character
     if (!this.equipment.hasOwnProperty(slot)) {
       console.warn(`Character cannot equip item to slot: ${slot}`)
       return
@@ -78,6 +86,20 @@ export class Character {
   }
 
   /**
+   * Helper: Get only wearable equipment from inventory
+   */
+  get equipmentItems() {
+    return this.inventory.filter(i => i instanceof Item)
+  }
+
+  /**
+   * Helper: Get only Cores from inventory
+   */
+  get coreItems() {
+    return this.inventory.filter(i => i instanceof Core)
+  }
+
+  /**
    * Aggregates stats from ALL equipped items + Permanent Bonuses
    */
   get totalBonuses() {
@@ -85,13 +107,13 @@ export class Character {
 
     for (const slot of Object.keys(this.equipment)) {
       const item = this.equipment[slot]
+      // Item.stats getter now automatically includes Core stats!
       if (item && item.stats) {
-        // Add item stats to totals
         for (const [stat, val] of Object.entries(item.stats)) {
           totals[stat] = (totals[stat] || 0) + val
         }
 
-        // Handle Weapon Damage specifically (if you want it in the stat sheet)
+        // Handle Weapon Damage specifically
         if (item.damage) {
           totals['weapon_damage'] = (totals['weapon_damage'] || 0) + item.damage
         }
