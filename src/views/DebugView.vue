@@ -5,26 +5,24 @@ import archetypesDataRaw from '@/data/archetypes.json'
 import itemPrefixes from '@/data/itemPrefixes.json'
 import equipmentData from '@/data/equipmentData.json'
 
-// --- CONSTANTS FOR EDITOR ---
+// --- CONSTANTS ---
 const ATTRIBUTES = ['str', 'dex', 'int', 'wis', 'end']
-const ARMOR_TYPES = ['cloth', 'leather', 'chain', 'plate'] // Common types
+const ARMOR_TYPES = ['cloth', 'leather', 'chain', 'plate']
 const WEAPON_TYPES = Object.keys(equipmentData.subtype_data)
 const ARMOR_SLOTS = ['head', 'shoulders', 'chest', 'arms', 'hands', 'waist', 'legs', 'feet']
 
 // --- STATE ---
 const activeTab = ref('preview')
-const expandedAttr = ref(null) // Tracks which attribute accordion is open
+const expandedAttr = ref(null)
 
-// Reactive copy of JSON for live editing
+// Data & Selection
 const archetypesData = reactive(JSON.parse(JSON.stringify(archetypesDataRaw)))
 const archetypeList = computed(() => Object.keys(archetypesData.archetypes))
-
-// Editor Selection
 const editingId = ref('martyr')
 const editingArchetype = computed(() => archetypesData.archetypes[editingId.value])
-
-// Preview State
 const previewId = ref('martyr')
+
+// Character Instance
 const character = ref(null)
 const tooltipItem = ref(null)
 const tooltipPos = ref({ x: 0, y: 0 })
@@ -32,11 +30,29 @@ const tooltipPos = ref({ x: 0, y: 0 })
 // --- ACTIONS ---
 
 function generatePreview() {
-  // Pass the REACTIVE 'archetypesData' to the factory
   try {
     character.value = createNewCharacter('Debug_Preview', previewId.value, archetypesData)
   } catch (e) {
     console.error(e)
+  }
+}
+
+function stripGear() {
+  if (!character.value) return
+  for (const slot of Object.keys(character.value.equipment)) {
+    character.value.unequipSlot(slot)
+  }
+}
+
+function toggleSlot(slot, isChecked) {
+  if (!character.value) return
+  if (!isChecked) {
+    character.value.unequipSlot(slot)
+  } else {
+    const itemToEquip = character.value.inventory.find((i) => i.slot === slot)
+    if (itemToEquip) {
+      character.value.equipItem(itemToEquip.uid)
+    }
   }
 }
 
@@ -49,11 +65,10 @@ function saveJson() {
   link.click()
 }
 
+// Helpers
 function toggleExpand(attr) {
   expandedAttr.value = expandedAttr.value === attr ? null : attr
 }
-
-// Toggle helper for arrays (Proficiencies/Armor Slots)
 function toggleArrayItem(array, item) {
   const idx = array.indexOf(item)
   if (idx > -1) array.splice(idx, 1)
@@ -62,19 +77,15 @@ function toggleArrayItem(array, item) {
 
 // Watchers
 watch(previewId, generatePreview, { immediate: true })
-
-// Live Update: When the editor data changes, re-roll the character if it matches the preview
 watch(
   archetypesData,
   () => {
-    if (previewId.value === editingId.value) {
-      generatePreview()
-    }
+    if (previewId.value === editingId.value) generatePreview()
   },
   { deep: true },
 )
 
-// Tooltip Logic
+// Tooltips
 function showTooltip(item, event) {
   if (!item) return
   tooltipItem.value = item
@@ -110,18 +121,27 @@ function updateTooltip(event) {
             {{ archetypesData.archetypes[key].name }}
           </option>
         </select>
-        <button @click="generatePreview">Reroll Gear</button>
+        <div class="btn-group">
+          <button @click="generatePreview">Reroll Gear</button>
+          <button @click="stripGear" class="danger-btn">Remove Gear</button>
+        </div>
       </div>
 
       <div v-if="character" class="character-sheet">
         <div class="panel">
-          <h3>Attributes</h3>
+          <h3>Attributes (Lv. {{ character.level }})</h3>
           <div
             v-for="(val, stat) in character.currentStats.attributes"
             :key="stat"
             class="stat-row"
           >
-            <span>{{ stat.toUpperCase() }}</span> <span class="val">{{ val }}</span>
+            <span>{{ stat.toUpperCase() }}</span>
+            <span class="val">
+              {{ val }}
+              <span v-if="character.currentStats.bonuses[stat]" class="bonus-text">
+                (+{{ character.currentStats.bonuses[stat] }})
+              </span>
+            </span>
           </div>
           <hr />
           <h3>Combat</h3>
@@ -132,7 +152,12 @@ function updateTooltip(event) {
           >
             <template v-if="val > 0 || stat.includes('hp') || stat.includes('mp')">
               <span class="lbl">{{ stat.replace('_', ' ') }}</span>
-              <span class="val">{{ val }}</span>
+              <span class="val">
+                {{ val }}
+                <span v-if="character.currentStats.bonuses[stat]" class="bonus-text">
+                  (+{{ character.currentStats.bonuses[stat] }})
+                </span>
+              </span>
             </template>
           </div>
         </div>
@@ -151,16 +176,31 @@ function updateTooltip(event) {
               'weapon',
             ]"
             :key="slot"
-            class="slot-box"
-            :class="{ filled: character.equipment[slot] }"
-            @mouseenter="showTooltip(character.equipment[slot], $event)"
-            @mouseleave="hideTooltip"
+            class="slot-wrapper"
           >
-            <span class="slot-label">{{ slot }}</span>
-            <span v-if="character.equipment[slot]" class="item-name">{{
-              character.equipment[slot].name
-            }}</span>
-            <span v-else class="empty-text">Empty</span>
+            <div class="slot-toggle">
+              <input
+                type="checkbox"
+                :checked="!!character.equipment[slot]"
+                @change="(e) => toggleSlot(slot, e.target.checked)"
+                :disabled="
+                  !character.equipment[slot] && !character.inventory.find((i) => i.slot === slot)
+                "
+              />
+            </div>
+
+            <div
+              class="slot-box"
+              :class="{ filled: character.equipment[slot] }"
+              @mouseenter="showTooltip(character.equipment[slot], $event)"
+              @mouseleave="hideTooltip"
+            >
+              <span class="slot-label">{{ slot }}</span>
+              <span v-if="character.equipment[slot]" class="item-name">{{
+                character.equipment[slot].name
+              }}</span>
+              <span v-else class="empty-text">Empty</span>
+            </div>
           </div>
         </div>
       </div>
@@ -179,19 +219,13 @@ function updateTooltip(event) {
 
       <main class="editor-form" v-if="editingArchetype">
         <header class="form-header">
+          <div><label>Name</label><input v-model="editingArchetype.name" type="text" /></div>
           <div>
-            <label>Name</label>
-            <input v-model="editingArchetype.name" type="text" />
-          </div>
-          <div>
-            <label>Threat</label>
-            <input v-model.number="editingArchetype.threat" type="number" />
+            <label>Threat</label><input v-model.number="editingArchetype.threat" type="number" />
           </div>
         </header>
-
         <div class="form-group">
-          <label>Description</label>
-          <textarea v-model="editingArchetype.description"></textarea>
+          <label>Description</label><textarea v-model="editingArchetype.description"></textarea>
         </div>
 
         <div class="section-block">
@@ -209,7 +243,6 @@ function updateTooltip(event) {
               >
               <span class="arrow">{{ expandedAttr === attr ? '▼' : '▶' }}</span>
             </div>
-
             <div v-if="expandedAttr === attr" class="accordion-body">
               <div class="split-inputs">
                 <label
@@ -221,15 +254,15 @@ function updateTooltip(event) {
                   <input type="number" v-model.number="editingArchetype.attribute_growth[attr]"
                 /></label>
               </div>
-              <h4>Relations (Multipliers per point)</h4>
+              <h4>Relations</h4>
               <div class="relations-grid">
                 <div
                   v-for="(mult, key) in editingArchetype.attribute_relations[attr]"
                   :key="key"
                   class="relation-item"
                 >
-                  <span>{{ key }}</span>
-                  <input
+                  <span>{{ key }}</span
+                  ><input
                     type="number"
                     step="0.1"
                     v-model.number="editingArchetype.attribute_relations[attr][key]"
@@ -241,54 +274,20 @@ function updateTooltip(event) {
         </div>
 
         <div class="section-block">
-          <h3>Proficiencies</h3>
-          <div class="prof-group">
-            <h4>Armor</h4>
-            <div class="toggle-grid">
-              <button
-                v-for="type in ARMOR_TYPES"
-                :key="type"
-                class="toggle-btn"
-                :class="{ active: editingArchetype.proficiencies.armor.includes(type) }"
-                @click="toggleArrayItem(editingArchetype.proficiencies.armor, type)"
-              >
-                {{ type }}
-              </button>
-            </div>
-          </div>
-          <div class="prof-group">
-            <h4>Weapons</h4>
-            <div class="toggle-grid">
-              <button
-                v-for="type in WEAPON_TYPES"
-                :key="type"
-                class="toggle-btn"
-                :class="{ active: editingArchetype.proficiencies.weapons.includes(type) }"
-                @click="toggleArrayItem(editingArchetype.proficiencies.weapons, type)"
-              >
-                {{ type }}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="section-block">
           <h3>Starting Kit</h3>
           <div class="kit-row">
             <label
               >Prefix Set:
               <select v-model="editingArchetype.starting_kit.prefix_id">
-                <option v-for="p in itemPrefixes" :key="p.id" :value="p.id">
-                  {{ p.name }} ({{ p.id }})
-                </option>
-              </select>
-            </label>
+                <option v-for="p in itemPrefixes" :key="p.id" :value="p.id">{{ p.name }}</option>
+              </select></label
+            >
             <label
-              >Weapon Subtype:
+              >Weapon:
               <select v-model="editingArchetype.starting_kit.weapon_subtype">
                 <option v-for="w in WEAPON_TYPES" :key="w" :value="w">{{ w }}</option>
-              </select>
-            </label>
+              </select></label
+            >
           </div>
           <h4>Equipped Slots</h4>
           <div class="toggle-grid">
@@ -319,6 +318,7 @@ function updateTooltip(event) {
 </template>
 
 <style scoped>
+/* Previous Styles + New Bonus Text Style */
 .debug-container {
   background: #111;
   color: #eee;
@@ -351,7 +351,81 @@ function updateTooltip(event) {
   align-self: center;
 }
 
-/* Layouts */
+.preview-controls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-bottom: 1px solid #333;
+}
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+.danger-btn {
+  background: #552222;
+  color: #ffaaaa;
+  border: 1px solid #773333;
+}
+
+.character-sheet {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+.panel {
+  background: #1a1a1a;
+  padding: 15px;
+  border: 1px solid #333;
+  min-width: 250px;
+}
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #333;
+  padding: 4px 0;
+}
+.val {
+  color: #fc0;
+}
+.bonus-text {
+  color: #00ff00;
+  font-size: 0.85em;
+  margin-left: 5px;
+} /* NEW STYLE */
+
+.equipment-grid {
+  display: grid;
+  gap: 8px;
+}
+.slot-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.slot-toggle input {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+.slot-box {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  border: 1px dashed #444;
+  background: #151515;
+}
+.slot-box.filled {
+  border-style: solid;
+  border-color: #666;
+}
+.item-name {
+  color: #afa;
+}
+
+/* Editor & Tooltip */
 .editor-layout {
   display: flex;
   height: calc(100vh - 60px);
@@ -377,8 +451,6 @@ function updateTooltip(event) {
   color: #ccc;
   border: 1px solid #444;
 }
-
-/* Form Elements */
 .form-header {
   display: flex;
   gap: 20px;
@@ -405,8 +477,6 @@ textarea {
   cursor: pointer;
   font-weight: bold;
 }
-
-/* Accordion */
 .section-block {
   margin-top: 30px;
   border: 1px solid #333;
@@ -448,8 +518,6 @@ textarea {
   color: #fff;
   border: 1px solid #555;
 }
-
-/* Relations Grid */
 .relations-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -467,8 +535,6 @@ textarea {
   width: 50px;
   text-align: center;
 }
-
-/* Toggles */
 .toggle-grid {
   display: flex;
   flex-wrap: wrap;
@@ -488,48 +554,6 @@ textarea {
   color: #bfb;
   border-color: #00aa00;
 }
-
-/* Character Sheet (Mini) */
-.character-sheet {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-}
-.panel {
-  background: #1a1a1a;
-  padding: 15px;
-  border: 1px solid #333;
-  min-width: 250px;
-}
-.stat-row {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #333;
-  padding: 4px 0;
-}
-.val {
-  color: #fc0;
-}
-.equipment-grid {
-  display: grid;
-  gap: 8px;
-}
-.slot-box {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px;
-  border: 1px dashed #444;
-  background: #151515;
-}
-.slot-box.filled {
-  border-style: solid;
-  border-color: #666;
-}
-.item-name {
-  color: #afa;
-}
-
-/* Tooltip */
 .tooltip {
   position: fixed;
   background: rgba(0, 0, 0, 0.95);
