@@ -1,20 +1,30 @@
 import { Character } from '@/models/Character'
 import { Item } from '@/models/Item'
 import { generateItem } from '@/utils/equipmentGenerator'
-import archetypesData from '@/data/archetypes.json'
+import { generateId } from '@/utils/uuid' // Assuming you have this from your previous fix
+import defaultArchetypes from '@/data/archetypes.json'
 import itemPrefixes from '@/data/itemPrefixes.json'
 
-export function createNewCharacter(name, archetypeId) {
-  // 1. Validate Archetype
-  const archetype = archetypesData.archetypes[archetypeId]
+/**
+ * Creates a new character.
+ * @param {string} name
+ * @param {string} archetypeId
+ * @param {object|null} customSource - (Optional) Live JSON object to use instead of the file.
+ */
+export function createNewCharacter(name, archetypeId, customSource = null) {
+  // 1. Determine Data Source (Live Edit vs Static File)
+  const sourceData = customSource || defaultArchetypes
+
+  // 2. Validate Archetype
+  const archetype = sourceData.archetypes[archetypeId]
   if (!archetype) {
     throw new Error(`Archetype ${archetypeId} does not exist.`)
   }
 
-  // 2. Instantiate Character
-  const newChar = new Character(crypto.randomUUID(), name, archetypeId)
+  // 3. Instantiate Character
+  const newChar = new Character(generateId(), name, archetypeId)
 
-  // 3. Resolve Starting Kit
+  // 4. Resolve Starting Kit
   const kit = archetype.starting_kit
   const prefixId = kit.prefix_id
 
@@ -25,9 +35,7 @@ export function createNewCharacter(name, archetypeId) {
     return newChar
   }
 
-  // 4. Generate Armor (Chest, Legs, etc.)
-  // We iterate through the list of slots defined in the archetype (e.g. "chest", "legs")
-  // and find the matching item in the Prefix's content list.
+  // 5. Generate Armor
   kit.armor_slots.forEach((slotName) => {
     const contentIndex = prefixDef.contents.findIndex((c) => c.slot === slotName)
 
@@ -41,8 +49,7 @@ export function createNewCharacter(name, archetypeId) {
     }
   })
 
-  // 5. Generate Weapon
-  // We search for the specific subtype defined in the kit (e.g. "longsword")
+  // 6. Generate Weapon
   const weaponIndex = prefixDef.contents.findIndex((c) => c.type === kit.weapon_subtype)
 
   if (weaponIndex !== -1) {

@@ -3,14 +3,14 @@ export class Core {
    * @param {object} data - The raw data from coreHandler.createCore()
    */
   constructor(data) {
-    this.uid = data.uid || crypto.randomUUID()
-    
+    this.uid = data.uid || generateId()
+
     // Identity
     this.name = data.name
     this.prefixId = data.prefixId
     this.suffixId = data.suffixId
     this.familyId = data.familyId
-    
+
     // The Math
     this.stats = data.stats || {}
     this.baseValue = data.baseValue // Useful for resale value calculations

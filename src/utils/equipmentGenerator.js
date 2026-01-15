@@ -1,5 +1,6 @@
 import equipmentData from '@/data/equipmentData.json'
 import itemPrefixes from '@/data/itemPrefixes.json'
+import { generateId } from '@/utils/uuid'
 
 /**
  * Generates a specific piece of equipment.
@@ -39,7 +40,7 @@ export function generateItem(prefixId, contentIndex, rarity = 'mundane', forcedS
 
   // 3. Construct Object
   const item = {
-    uid: crypto.randomUUID(),
+    uid: generateId(),
     name: `${prefix.name} ${template.name}`,
     slot: template.slot,
     type: template.type,

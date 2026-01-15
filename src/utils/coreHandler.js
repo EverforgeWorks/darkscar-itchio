@@ -1,11 +1,11 @@
 import corePrefixes from '@/data/corePrefixes.json'
 import coreSuffixes from '@/data/coreSuffixes.json'
 import equipmentData from '@/data/equipmentData.json'
-import { Core } from '@/models/Core' // <--- IMPORT THE MODEL
+import { Core } from '@/models/Core'
 
 export function createCore(prefixId, suffixId) {
-  const prefix = corePrefixes.find(p => p.id === prefixId)
-  const suffix = coreSuffixes.find(s => s.id === suffixId)
+  const prefix = corePrefixes.find((p) => p.id === prefixId)
+  const suffix = coreSuffixes.find((s) => s.id === suffixId)
 
   if (!prefix || !suffix) return null
 
@@ -38,6 +38,6 @@ export function createCore(prefixId, suffixId) {
     suffixId: suffix.id,
     familyId: prefix.family,
     baseValue: baseVal,
-    stats: calculatedStats
+    stats: calculatedStats,
   })
 }

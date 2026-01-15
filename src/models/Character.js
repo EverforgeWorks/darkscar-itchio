@@ -4,8 +4,7 @@ import { Core } from '@/models/Core'
 
 export class Character {
   constructor(id, name, archetypeId) {
-    this.id = id
-    this.name = name
+    this.id = this.name = name
     this.archetypeId = archetypeId
     this.level = 1
     this.experience = 0
@@ -26,7 +25,7 @@ export class Character {
       waist: null,
       legs: null,
       feet: null,
-      weapon: null 
+      weapon: null,
     }
   }
 
@@ -48,10 +47,10 @@ export class Character {
     if (index === -1) return
 
     const newItem = this.inventory[index]
-    
+
     // Safety Check: Can't equip a Core directly!
     if (newItem instanceof Core) {
-      console.warn("Cannot equip a Core directly. Use a socketing action.")
+      console.warn('Cannot equip a Core directly. Use a socketing action.')
       return
     }
 
@@ -89,14 +88,14 @@ export class Character {
    * Helper: Get only wearable equipment from inventory
    */
   get equipmentItems() {
-    return this.inventory.filter(i => i instanceof Item)
+    return this.inventory.filter((i) => i instanceof Item)
   }
 
   /**
    * Helper: Get only Cores from inventory
    */
   get coreItems() {
-    return this.inventory.filter(i => i instanceof Core)
+    return this.inventory.filter((i) => i instanceof Core)
   }
 
   /**
