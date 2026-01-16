@@ -24,14 +24,54 @@
         "weapon_subtype": "longsword",
         "armor_slots": ["chest", "legs", "feet", "hands"]
       },
-      "base_attributes": { "str": 120, "dex": 100, "int": 75, "wis": 90, "end": 120 },
-      "attribute_growth": { "str": 5, "dex": 3, "int": 1, "wis": 1, "end": 4 },
+      "base_attributes": {
+        "str": 120,
+        "dex": 100,
+        "int": 75,
+        "wis": 90,
+        "end": 120
+      },
+      "attribute_growth": {
+        "str": 5,
+        "dex": 3,
+        "int": 1,
+        "wis": 1,
+        "end": 4
+      },
       "attribute_relations": {
-        "str": { "patk": 3.5, "pdef": 1, "max_hp": 2.5, "acc": 1.5 },
-        "dex": { "patk": 0.5, "pdef": 0.5, "eva": 1, "acc": 1.5, "crit_hit": 0.5, "crit_dmg": 0.8 },
-        "int": { "matk": 0.2, "mdef": 0.5, "acc": 1, "crit_hit": 0.1, "crit_dmg": 0.1 },
-        "wis": { "matk": 0.5, "mdef": 1.5, "max_mp": 5.5, "mp_regen": 0.05 },
-        "end": { "pdef": 2.5, "mdef": 1.5, "max_hp": 3.5, "hp_regen": 0.15 }
+        "str": {
+          "patk": 3.5,
+          "pdef": 1,
+          "max_hp": 2.5,
+          "acc": 1.5
+        },
+        "dex": {
+          "patk": 0.5,
+          "pdef": 0.5,
+          "eva": 1,
+          "acc": 1.5,
+          "crit_hit": 0.8,
+          "crit_dmg": 1.2
+        },
+        "int": {
+          "matk": 0.2,
+          "mdef": 0.5,
+          "acc": 1,
+          "crit_hit": 0.1,
+          "crit_dmg": 0.1
+        },
+        "wis": {
+          "matk": 0.5,
+          "mdef": 1.5,
+          "max_mp": 5.5,
+          "mp_regen": 0.05
+        },
+        "end": {
+          "pdef": 2.5,
+          "mdef": 1.5,
+          "max_hp": 3.5,
+          "hp_regen": 0.15
+        }
       }
     },
     "dreadnought": {
@@ -55,14 +95,54 @@
         "weapon_subtype": "sword_board",
         "armor_slots": ["chest", "legs", "feet", "hands"]
       },
-      "base_attributes": { "str": 115, "dex": 80, "int": 70, "wis": 110, "end": 130 },
-      "attribute_growth": { "str": 4, "dex": 1, "int": 1, "wis": 3, "end": 5 },
+      "base_attributes": {
+        "str": 115,
+        "dex": 80,
+        "int": 70,
+        "wis": 110,
+        "end": 130
+      },
+      "attribute_growth": {
+        "str": 4,
+        "dex": 1,
+        "int": 1,
+        "wis": 3,
+        "end": 5
+      },
       "attribute_relations": {
-        "str": { "patk": 2.5, "pdef": 4, "max_hp": 1.5, "acc": 0.5 },
-        "dex": { "patk": 0.2, "pdef": 1, "eva": 0.5, "acc": 1, "crit_hit": 0.1, "crit_dmg": 0.2 },
-        "int": { "matk": 0, "mdef": 1, "acc": 0.5, "crit_hit": 0, "crit_dmg": 0 },
-        "wis": { "matk": 0.2, "mdef": 2.5, "max_mp": 5, "mp_regen": 0.04 },
-        "end": { "pdef": 5.5, "mdef": 3.5, "max_hp": 4.5, "hp_regen": 0.22 }
+        "str": {
+          "patk": 2.5,
+          "pdef": 4,
+          "max_hp": 1.5,
+          "acc": 0.5
+        },
+        "dex": {
+          "patk": 0.2,
+          "pdef": 1,
+          "eva": 0.5,
+          "acc": 1,
+          "crit_hit": 0.6,
+          "crit_dmg": 0.4
+        },
+        "int": {
+          "matk": 0,
+          "mdef": 1,
+          "acc": 0.5,
+          "crit_hit": 0,
+          "crit_dmg": 0
+        },
+        "wis": {
+          "matk": 0.2,
+          "mdef": 2.5,
+          "max_mp": 5,
+          "mp_regen": 0.04
+        },
+        "end": {
+          "pdef": 5.5,
+          "mdef": 3.5,
+          "max_hp": 4.5,
+          "hp_regen": 0.22
+        }
       }
     },
     "dervish": {
@@ -86,14 +166,54 @@
         "weapon_subtype": "dual_daggers",
         "armor_slots": ["chest", "legs", "feet", "hands"]
       },
-      "base_attributes": { "str": 80, "dex": 130, "int": 105, "wis": 80, "end": 100 },
-      "attribute_growth": { "str": 3, "dex": 5, "int": 2, "wis": 1, "end": 3 },
+      "base_attributes": {
+        "str": 80,
+        "dex": 130,
+        "int": 105,
+        "wis": 80,
+        "end": 100
+      },
+      "attribute_growth": {
+        "str": 3,
+        "dex": 5,
+        "int": 2,
+        "wis": 1,
+        "end": 3
+      },
       "attribute_relations": {
-        "str": { "patk": 2.2, "pdef": 0.5, "max_hp": 1.5, "acc": 1 },
-        "dex": { "patk": 1.8, "pdef": 0.5, "eva": 4, "acc": 3.5, "crit_hit": 4, "crit_dmg": 4.8 },
-        "int": { "matk": 0.5, "mdef": 0.5, "acc": 2, "crit_hit": 3.5, "crit_dmg": 1.5 },
-        "wis": { "matk": 0.5, "mdef": 0.5, "max_mp": 5, "mp_regen": 0.05 },
-        "end": { "pdef": 1, "mdef": 1, "max_hp": 3.5, "hp_regen": 0.12 }
+        "str": {
+          "patk": 2.2,
+          "pdef": 0.5,
+          "max_hp": 1.5,
+          "acc": 1
+        },
+        "dex": {
+          "patk": 1.8,
+          "pdef": 0.5,
+          "eva": 2.2,
+          "acc": 1.2,
+          "crit_hit": 2.2,
+          "crit_dmg": 1.4
+        },
+        "int": {
+          "matk": 0.5,
+          "mdef": 0.5,
+          "acc": 2,
+          "crit_hit": 1.2,
+          "crit_dmg": 1
+        },
+        "wis": {
+          "matk": 0.5,
+          "mdef": 0.5,
+          "max_mp": 5,
+          "mp_regen": 0.05
+        },
+        "end": {
+          "pdef": 1,
+          "mdef": 1,
+          "max_hp": 3.5,
+          "hp_regen": 0.12
+        }
       }
     },
     "dancer": {
@@ -110,14 +230,54 @@
         "weapon_subtype": "dual_axes",
         "armor_slots": ["chest", "legs", "feet", "hands"]
       },
-      "base_attributes": { "str": 90, "dex": 125, "int": 110, "wis": 105, "end": 75 },
-      "attribute_growth": { "str": 2, "dex": 5, "int": 3, "wis": 3, "end": 3 },
+      "base_attributes": {
+        "str": 90,
+        "dex": 125,
+        "int": 110,
+        "wis": 105,
+        "end": 75
+      },
+      "attribute_growth": {
+        "str": 2,
+        "dex": 5,
+        "int": 3,
+        "wis": 3,
+        "end": 3
+      },
       "attribute_relations": {
-        "str": { "patk": 1.5, "pdef": 1.5, "max_hp": 2.2, "acc": 1 },
-        "dex": { "patk": 1.2, "pdef": 0.8, "eva": 5, "acc": 3, "crit_hit": 4.4, "crit_dmg": 2 },
-        "int": { "matk": 1.5, "mdef": 2.5, "acc": 2.5, "crit_hit": 3, "crit_dmg": 3 },
-        "wis": { "matk": 1.5, "mdef": 3.5, "max_mp": 6.5, "mp_regen": 0.08 },
-        "end": { "pdef": 1.5, "mdef": 2, "max_hp": 5.5, "hp_regen": 0.18 }
+        "str": {
+          "patk": 1.5,
+          "pdef": 1.5,
+          "max_hp": 2.2,
+          "acc": 1
+        },
+        "dex": {
+          "patk": 1.2,
+          "pdef": 0.8,
+          "eva": 5,
+          "acc": 3,
+          "crit_hit": 2.1,
+          "crit_dmg": 0.6
+        },
+        "int": {
+          "matk": 1.5,
+          "mdef": 2.5,
+          "acc": 2.5,
+          "crit_hit": 1.4,
+          "crit_dmg": 0.8
+        },
+        "wis": {
+          "matk": 1.5,
+          "mdef": 3.5,
+          "max_mp": 6.5,
+          "mp_regen": 0.08
+        },
+        "end": {
+          "pdef": 1.5,
+          "mdef": 2,
+          "max_hp": 5.5,
+          "hp_regen": 0.18
+        }
       }
     },
     "evoker": {
@@ -134,10 +294,27 @@
         "weapon_subtype": "staff",
         "armor_slots": ["chest", "legs", "feet", "hands"]
       },
-      "base_attributes": { "str": 80, "dex": 110, "int": 130, "wis": 110, "end": 75 },
-      "attribute_growth": { "str": 1, "dex": 2, "int": 6, "wis": 3, "end": 2 },
+      "base_attributes": {
+        "str": 80,
+        "dex": 110,
+        "int": 130,
+        "wis": 110,
+        "end": 75
+      },
+      "attribute_growth": {
+        "str": 1,
+        "dex": 2,
+        "int": 6,
+        "wis": 3,
+        "end": 2
+      },
       "attribute_relations": {
-        "str": { "patk": 0.5, "pdef": 0.5, "max_hp": 2, "acc": 0.5 },
+        "str": {
+          "patk": 0.5,
+          "pdef": 0.5,
+          "max_hp": 2,
+          "acc": 0.5
+        },
         "dex": {
           "patk": 0.8,
           "pdef": 0.5,
@@ -146,9 +323,25 @@
           "crit_hit": 0.8,
           "crit_dmg": 1.2
         },
-        "int": { "matk": 5.5, "mdef": 2, "acc": 4, "crit_hit": 1, "crit_dmg": 1.5 },
-        "wis": { "matk": 2, "mdef": 2, "max_mp": 5, "mp_regen": 0.12 },
-        "end": { "pdef": 0.5, "mdef": 3, "max_hp": 4.5, "hp_regen": 0.15 }
+        "int": {
+          "matk": 5.5,
+          "mdef": 2,
+          "acc": 4,
+          "crit_hit": 1,
+          "crit_dmg": 1.5
+        },
+        "wis": {
+          "matk": 2,
+          "mdef": 2,
+          "max_mp": 5,
+          "mp_regen": 0.12
+        },
+        "end": {
+          "pdef": 0.5,
+          "mdef": 3,
+          "max_hp": 4.5,
+          "hp_regen": 0.15
+        }
       }
     },
     "seer": {
@@ -165,14 +358,54 @@
         "weapon_subtype": "wand_orb",
         "armor_slots": ["chest", "legs", "feet", "hands"]
       },
-      "base_attributes": { "str": 75, "dex": 90, "int": 125, "wis": 115, "end": 100 },
-      "attribute_growth": { "str": 1, "dex": 2, "int": 5, "wis": 3, "end": 3 },
+      "base_attributes": {
+        "str": 75,
+        "dex": 90,
+        "int": 125,
+        "wis": 115,
+        "end": 100
+      },
+      "attribute_growth": {
+        "str": 1,
+        "dex": 2,
+        "int": 5,
+        "wis": 3,
+        "end": 3
+      },
       "attribute_relations": {
-        "str": { "patk": 0.8, "pdef": 1, "max_hp": 2, "acc": 1 },
-        "dex": { "patk": 0.2, "pdef": 0.5, "eva": 2, "acc": 2, "crit_hit": 0.8, "crit_dmg": 1 },
-        "int": { "matk": 3, "mdef": 4.5, "acc": 3.5, "crit_hit": 0.4, "crit_dmg": 0.5 },
-        "wis": { "matk": 2, "mdef": 5.5, "max_mp": 5.2, "mp_regen": 0.14 },
-        "end": { "pdef": 3, "mdef": 6, "max_hp": 4.5, "hp_regen": 0.12 }
+        "str": {
+          "patk": 0.8,
+          "pdef": 1,
+          "max_hp": 2,
+          "acc": 1
+        },
+        "dex": {
+          "patk": 0.2,
+          "pdef": 0.5,
+          "eva": 2,
+          "acc": 2,
+          "crit_hit": 0.8,
+          "crit_dmg": 1
+        },
+        "int": {
+          "matk": 3,
+          "mdef": 4.5,
+          "acc": 3.5,
+          "crit_hit": 0.4,
+          "crit_dmg": 0.5
+        },
+        "wis": {
+          "matk": 2,
+          "mdef": 5.5,
+          "max_mp": 5.2,
+          "mp_regen": 0.14
+        },
+        "end": {
+          "pdef": 3,
+          "mdef": 6,
+          "max_hp": 4.5,
+          "hp_regen": 0.12
+        }
       }
     },
     "warden": {
@@ -197,14 +430,54 @@
         "weapon_subtype": "spear_shield",
         "armor_slots": ["chest", "legs", "feet", "hands"]
       },
-      "base_attributes": { "str": 115, "dex": 75, "int": 90, "wis": 110, "end": 115 },
-      "attribute_growth": { "str": 3, "dex": 1, "int": 2, "wis": 4, "end": 5 },
+      "base_attributes": {
+        "str": 115,
+        "dex": 75,
+        "int": 90,
+        "wis": 110,
+        "end": 115
+      },
+      "attribute_growth": {
+        "str": 3,
+        "dex": 1,
+        "int": 2,
+        "wis": 4,
+        "end": 5
+      },
       "attribute_relations": {
-        "str": { "patk": 2.2, "pdef": 2.5, "max_hp": 2, "acc": 1.5 },
-        "dex": { "patk": 0.5, "pdef": 1, "eva": 1, "acc": 1.5, "crit_hit": 0.2, "crit_dmg": 0.3 },
-        "int": { "matk": 1, "mdef": 1.5, "acc": 1.5, "crit_hit": 0.1, "crit_dmg": 0.1 },
-        "wis": { "matk": 3.5, "mdef": 4, "max_mp": 6.5, "mp_regen": 0.12 },
-        "end": { "pdef": 3.5, "mdef": 3, "max_hp": 4.5, "hp_regen": 0.18 }
+        "str": {
+          "patk": 2.2,
+          "pdef": 2.5,
+          "max_hp": 2,
+          "acc": 1.5
+        },
+        "dex": {
+          "patk": 0.5,
+          "pdef": 1,
+          "eva": 1,
+          "acc": 1.5,
+          "crit_hit": 0.2,
+          "crit_dmg": 0.3
+        },
+        "int": {
+          "matk": 1,
+          "mdef": 1.5,
+          "acc": 1.5,
+          "crit_hit": 0.1,
+          "crit_dmg": 0.1
+        },
+        "wis": {
+          "matk": 3.5,
+          "mdef": 4,
+          "max_mp": 6.5,
+          "mp_regen": 0.12
+        },
+        "end": {
+          "pdef": 3.5,
+          "mdef": 3,
+          "max_hp": 4.5,
+          "hp_regen": 0.18
+        }
       }
     },
     "saint": {
@@ -221,14 +494,54 @@
         "weapon_subtype": "hammer_sickle",
         "armor_slots": ["chest", "legs", "feet", "hands"]
       },
-      "base_attributes": { "str": 75, "dex": 75, "int": 115, "wis": 125, "end": 115 },
-      "attribute_growth": { "str": 1, "dex": 1, "int": 3, "wis": 5, "end": 4 },
+      "base_attributes": {
+        "str": 75,
+        "dex": 75,
+        "int": 115,
+        "wis": 125,
+        "end": 115
+      },
+      "attribute_growth": {
+        "str": 1,
+        "dex": 1,
+        "int": 3,
+        "wis": 5,
+        "end": 4
+      },
       "attribute_relations": {
-        "str": { "patk": 0.5, "pdef": 2, "max_hp": 2, "acc": 0.5 },
-        "dex": { "patk": 0.1, "pdef": 0.5, "eva": 0.5, "acc": 1, "crit_hit": 0.1, "crit_dmg": 0.1 },
-        "int": { "matk": 1.5, "mdef": 2.5, "acc": 1, "crit_hit": 0.2, "crit_dmg": 0.2 },
-        "wis": { "matk": 2.5, "mdef": 6, "max_mp": 6.5, "mp_regen": 0.16 },
-        "end": { "pdef": 4, "mdef": 5, "max_hp": 4, "hp_regen": 0.2 }
+        "str": {
+          "patk": 0.5,
+          "pdef": 2,
+          "max_hp": 2,
+          "acc": 0.5
+        },
+        "dex": {
+          "patk": 0.1,
+          "pdef": 0.5,
+          "eva": 0.5,
+          "acc": 1,
+          "crit_hit": 0.1,
+          "crit_dmg": 0.1
+        },
+        "int": {
+          "matk": 1.5,
+          "mdef": 2.5,
+          "acc": 1,
+          "crit_hit": 0.2,
+          "crit_dmg": 0.2
+        },
+        "wis": {
+          "matk": 2.5,
+          "mdef": 6,
+          "max_mp": 6.5,
+          "mp_regen": 0.16
+        },
+        "end": {
+          "pdef": 4,
+          "mdef": 5,
+          "max_hp": 4,
+          "hp_regen": 0.2
+        }
       }
     }
   }

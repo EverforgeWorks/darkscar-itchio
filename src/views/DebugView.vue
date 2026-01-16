@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import CharacterPreview from '@/components/debug/CharacterPreview.vue'
 import ArchetypeEditor from '@/components/debug/ArchetypeEditor.vue'
 import ItemPrefixEditor from '@/components/debug/ItemPrefixEditor.vue'
+import CoreSuffixEditor from '@/components/debug/CoreSuffixEditor.vue' // Import new component
 
 const activeTab = ref('preview')
 </script>
@@ -11,22 +12,42 @@ const activeTab = ref('preview')
   <div class="debug-container">
     <nav class="top-nav">
       <div class="tabs">
-        <button :class="{ active: activeTab === 'preview' }" @click="activeTab = 'preview'">Preview & Fabricator</button>
-        <button :class="{ active: activeTab === 'archetypes' }" @click="activeTab = 'archetypes'">Archetype Editor</button>
-        <button :class="{ active: activeTab === 'prefixes' }" @click="activeTab = 'prefixes'">Item Set Editor</button>
+        <button :class="{ active: activeTab === 'preview' }" @click="activeTab = 'preview'">
+          Preview & Fabricator
+        </button>
+        <button :class="{ active: activeTab === 'archetypes' }" @click="activeTab = 'archetypes'">
+          Archetype Editor
+        </button>
+        <button :class="{ active: activeTab === 'prefixes' }" @click="activeTab = 'prefixes'">
+          Item Set Editor
+        </button>
+        <button :class="{ active: activeTab === 'suffixes' }" @click="activeTab = 'suffixes'">
+          Suffix Editor
+        </button>
       </div>
       <router-link to="/" class="exit-link">Exit Debug</router-link>
     </nav>
 
     <div class="content-area">
       <keep-alive>
-        <component :is="activeTab === 'preview' ? CharacterPreview : activeTab === 'archetypes' ? ArchetypeEditor : ItemPrefixEditor" />
+        <component
+          :is="
+            activeTab === 'preview'
+              ? CharacterPreview
+              : activeTab === 'archetypes'
+                ? ArchetypeEditor
+                : activeTab === 'prefixes'
+                  ? ItemPrefixEditor
+                  : CoreSuffixEditor
+          "
+        />
       </keep-alive>
     </div>
   </div>
 </template>
 
 <style scoped>
+/* Unchanged styles from your previous file */
 .debug-container {
   background: #111;
   color: #eee;
