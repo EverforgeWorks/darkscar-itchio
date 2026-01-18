@@ -1,15 +1,38 @@
 <script setup>
 import { ref, reactive, computed } from 'vue'
 import coreSuffixesRaw from '@/data/coreSuffixes.json'
+import corePrefixesRaw from '@/data/corePrefixes.json'
+import equipmentData from '@/data/equipmentData.json'
 
-// --- CONSTANTS ---
-// Generating an array [1, 2, ..., 17] for the family toggles
-const FAMILY_IDS = Array.from({ length: 17 }, (_, i) => i + 1)
+// --- CONSTANTS & CONFIG ---
+const STAT_NAMES = {
+  str: 'Strength',
+  dex: 'Dexterity',
+  int: 'Intellect',
+  wis: 'Wisdom',
+  end: 'Endurance',
+  patk: 'Physical Attack',
+  pdef: 'Physical Defense',
+  matk: 'Magical Attack',
+  mdef: 'Magical Defense',
+  max_hp: 'Maximum HP',
+  max_mp: 'Maximum MP',
+  acc: 'Accuracy',
+  eva: 'Evasion',
+}
 
 // --- STATE ---
 const suffixData = reactive(JSON.parse(JSON.stringify(coreSuffixesRaw)))
 const selectedIndex = ref(0)
 const activeSuffix = computed(() => suffixData[selectedIndex.value])
+
+// --- DYNAMIC DATA ---
+// Scan the prefixes to find which families actually exist
+const availableFamilies = computed(() => {
+  const uniqueFamilies = new Set(corePrefixesRaw.map((p) => p.family))
+  // Sort numerically
+  return Array.from(uniqueFamilies).sort((a, b) => a - b)
+})
 
 // --- ACTIONS ---
 function addSuffix() {
@@ -48,6 +71,31 @@ function saveJson() {
   link.download = 'coreSuffixes.json'
   link.click()
 }
+
+// --- PREVIEW HELPERS ---
+function getPrefixesForFamily(famId) {
+  return corePrefixesRaw.filter((p) => p.family === famId)
+}
+
+function getPreviewText(prefix, suffix) {
+  const base = suffix.base_value
+  const parts = []
+
+  const add = (statKey) => {
+    if (!statKey) return
+    const mult = equipmentData.stat_conversion[statKey] || 1
+    const val = base * mult
+    const name = STAT_NAMES[statKey] || statKey.toUpperCase()
+    parts.push(`+${val} ${name}`)
+  }
+
+  add(prefix.stats.primary)
+  add(prefix.stats.secondary)
+  add(prefix.stats.tertiary)
+
+  // Format: "Maul of the Marshes +2 Strength // +4 Physical Defense"
+  return `${prefix.name} ${suffix.name} ${parts.join(' // ')}`
+}
 </script>
 
 <template>
@@ -85,7 +133,7 @@ function saveJson() {
 
         <div class="family-grid">
           <button
-            v-for="id in FAMILY_IDS"
+            v-for="id in availableFamilies"
             :key="id"
             class="toggle-btn"
             :class="{ active: activeSuffix.families.includes(id) }"
@@ -98,6 +146,29 @@ function saveJson() {
         <div class="preview-row">
           <span class="label">Current Selection:</span>
           <span class="val">[{{ activeSuffix.families.join(', ') }}]</span>
+        </div>
+      </div>
+
+      <div class="section-block" v-if="activeSuffix.families.length > 0">
+        <h3>Core Previews</h3>
+        <p class="help-text">Expand families to see valid Prefix combinations.</p>
+
+        <div class="preview-container">
+          <details v-for="famId in activeSuffix.families" :key="famId" class="family-details" open>
+            <summary>
+              Family {{ famId }}
+              <span class="count">({{ getPrefixesForFamily(famId).length }} Prefixes)</span>
+            </summary>
+            <div class="prefix-list">
+              <div
+                v-for="prefix in getPrefixesForFamily(famId)"
+                :key="prefix.id"
+                class="preview-item"
+              >
+                {{ getPreviewText(prefix, activeSuffix) }}
+              </div>
+            </div>
+          </details>
         </div>
       </div>
     </main>
@@ -232,6 +303,52 @@ function saveJson() {
 }
 .preview-row .val {
   color: #afa;
+}
+
+/* NEW STYLES */
+.preview-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.family-details {
+  background: #1a1a1a;
+  border: 1px solid #333;
+}
+.family-details summary {
+  padding: 10px;
+  cursor: pointer;
+  background: #222;
+  font-weight: bold;
+  color: #ccc;
+  user-select: none;
+}
+.family-details summary:hover {
+  background: #2a2a2a;
+  color: #fff;
+}
+.family-details .count {
+  font-weight: normal;
+  color: #777;
+  font-size: 0.9em;
+  margin-left: 10px;
+}
+.prefix-list {
+  padding: 10px;
+  border-top: 1px solid #333;
+  background: #111;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.preview-item {
+  font-family: 'Courier New', monospace;
+  color: #aaa;
+  font-size: 0.9em;
+  padding: 4px 0;
+  border-bottom: 1px dashed #222;
+}
+.preview-item:last-child {
+  border-bottom: none;
 }
 
 .save-btn {

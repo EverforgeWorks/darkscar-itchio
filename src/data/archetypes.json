@@ -4,9 +4,12 @@
       "id": "martyr",
       "name": "Martyr",
       "description": "Primary Stat: Strength. A heavy hitting warrior who exchanges their own life for brutal damage skills.",
-      "threat": 4,
+      "threat": 6,
       "proficiencies": {
-        "armor": ["leather", "chain"],
+        "armor": [
+          "leather",
+          "chain"
+        ],
         "weapons": [
           "battleaxe",
           "maul",
@@ -22,7 +25,12 @@
       "starting_kit": {
         "prefix_id": "adventurer",
         "weapon_subtype": "longsword",
-        "armor_slots": ["chest", "legs", "feet", "hands"]
+        "armor_slots": [
+          "chest",
+          "legs",
+          "feet",
+          "hands"
+        ]
       },
       "base_attributes": {
         "str": 120,
@@ -78,9 +86,12 @@
       "id": "dreadnought",
       "name": "Dreadnought",
       "description": "Primary Stat: Strength. An armored behemoth built for frontline combat.",
-      "threat": 5,
+      "threat": 12,
       "proficiencies": {
-        "armor": ["chain", "plate"],
+        "armor": [
+          "chain",
+          "plate"
+        ],
         "weapons": [
           "sword_board",
           "hatchet_buckler",
@@ -93,7 +104,12 @@
       "starting_kit": {
         "prefix_id": "soldier",
         "weapon_subtype": "sword_board",
-        "armor_slots": ["chest", "legs", "feet", "hands"]
+        "armor_slots": [
+          "chest",
+          "legs",
+          "feet",
+          "hands"
+        ]
       },
       "base_attributes": {
         "str": 115,
@@ -151,7 +167,10 @@
       "description": "Primary Stat: Dexterity. A swift and agile fighter mastering evasion.",
       "threat": 3,
       "proficiencies": {
-        "armor": ["cloth", "leather"],
+        "armor": [
+          "cloth",
+          "leather"
+        ],
         "weapons": [
           "dual_daggers",
           "dual_axes",
@@ -164,7 +183,12 @@
       "starting_kit": {
         "prefix_id": "traveler",
         "weapon_subtype": "dual_daggers",
-        "armor_slots": ["chest", "legs", "feet", "hands"]
+        "armor_slots": [
+          "chest",
+          "legs",
+          "feet",
+          "hands"
+        ]
       },
       "base_attributes": {
         "str": 80,
@@ -220,15 +244,30 @@
       "id": "dancer",
       "name": "Dancer",
       "description": "Primary Stat: Dexterity. A warrior of grace and discipline.",
-      "threat": 1,
+      "threat": 2,
       "proficiencies": {
-        "armor": ["cloth", "leather"],
-        "weapons": ["staff", "hammer_sickle", "dual_daggers", "dual_axes", "bow", "throwing_knives"]
+        "armor": [
+          "cloth",
+          "leather"
+        ],
+        "weapons": [
+          "staff",
+          "hammer_sickle",
+          "dual_daggers",
+          "dual_axes",
+          "bow",
+          "throwing_knives"
+        ]
       },
       "starting_kit": {
         "prefix_id": "traveler",
         "weapon_subtype": "dual_axes",
-        "armor_slots": ["chest", "legs", "feet", "hands"]
+        "armor_slots": [
+          "chest",
+          "legs",
+          "feet",
+          "hands"
+        ]
       },
       "base_attributes": {
         "str": 90,
@@ -284,15 +323,26 @@
       "id": "evoker",
       "name": "Evoker",
       "description": "Primary Stat: Intellect. A master of destructive magic.",
-      "threat": 3,
+      "threat": 6,
       "proficiencies": {
-        "armor": ["cloth"],
-        "weapons": ["staff", "wand_orb", "hammer_sickle"]
+        "armor": [
+          "cloth"
+        ],
+        "weapons": [
+          "staff",
+          "wand_orb",
+          "hammer_sickle"
+        ]
       },
       "starting_kit": {
         "prefix_id": "explorer",
         "weapon_subtype": "staff",
-        "armor_slots": ["chest", "legs", "feet", "hands"]
+        "armor_slots": [
+          "chest",
+          "legs",
+          "feet",
+          "hands"
+        ]
       },
       "base_attributes": {
         "str": 80,
@@ -348,15 +398,27 @@
       "id": "seer",
       "name": "Seer",
       "description": "Primary Stat: Intellect. A powerful enchanter.",
-      "threat": 2,
+      "threat": 3,
       "proficiencies": {
-        "armor": ["cloth"],
-        "weapons": ["staff", "wand_orb", "hammer_sickle", "dual_daggers"]
+        "armor": [
+          "cloth"
+        ],
+        "weapons": [
+          "staff",
+          "wand_orb",
+          "hammer_sickle",
+          "dual_daggers"
+        ]
       },
       "starting_kit": {
         "prefix_id": "explorer",
         "weapon_subtype": "wand_orb",
-        "armor_slots": ["chest", "legs", "feet", "hands"]
+        "armor_slots": [
+          "chest",
+          "legs",
+          "feet",
+          "hands"
+        ]
       },
       "base_attributes": {
         "str": 75,
@@ -412,9 +474,13 @@
       "id": "warden",
       "name": "Warden",
       "description": "Primary Stat: Wisdom. A hybrid of melee prowess and magical skill.",
-      "threat": 4,
+      "threat": 10,
       "proficiencies": {
-        "armor": ["leather", "chain", "plate"],
+        "armor": [
+          "leather",
+          "chain",
+          "plate"
+        ],
         "weapons": [
           "battleaxe",
           "maul",
@@ -428,7 +494,12 @@
       "starting_kit": {
         "prefix_id": "adventurer",
         "weapon_subtype": "spear_shield",
-        "armor_slots": ["chest", "legs", "feet", "hands"]
+        "armor_slots": [
+          "chest",
+          "legs",
+          "feet",
+          "hands"
+        ]
       },
       "base_attributes": {
         "str": 115,
@@ -484,15 +555,27 @@
       "id": "saint",
       "name": "Saint",
       "description": "Primary Stat: Wisdom. A disciplined healer and protector.",
-      "threat": 1,
+      "threat": 5,
       "proficiencies": {
-        "armor": ["cloth"],
-        "weapons": ["staff", "wand_orb", "sword_board", "hammer_sickle"]
+        "armor": [
+          "cloth"
+        ],
+        "weapons": [
+          "staff",
+          "wand_orb",
+          "sword_board",
+          "hammer_sickle"
+        ]
       },
       "starting_kit": {
         "prefix_id": "explorer",
         "weapon_subtype": "hammer_sickle",
-        "armor_slots": ["chest", "legs", "feet", "hands"]
+        "armor_slots": [
+          "chest",
+          "legs",
+          "feet",
+          "hands"
+        ]
       },
       "base_attributes": {
         "str": 75,

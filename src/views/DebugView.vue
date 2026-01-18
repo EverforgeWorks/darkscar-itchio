@@ -3,7 +3,8 @@ import { ref } from 'vue'
 import CharacterPreview from '@/components/debug/CharacterPreview.vue'
 import ArchetypeEditor from '@/components/debug/ArchetypeEditor.vue'
 import ItemPrefixEditor from '@/components/debug/ItemPrefixEditor.vue'
-import CoreSuffixEditor from '@/components/debug/CoreSuffixEditor.vue' // Import new component
+import CoreSuffixEditor from '@/components/debug/CoreSuffixEditor.vue'
+import CorePrefixEditor from '@/components/debug/CorePrefixEditor.vue'
 
 const activeTab = ref('preview')
 </script>
@@ -21,8 +22,14 @@ const activeTab = ref('preview')
         <button :class="{ active: activeTab === 'prefixes' }" @click="activeTab = 'prefixes'">
           Item Set Editor
         </button>
+        <button
+          :class="{ active: activeTab === 'core_prefixes' }"
+          @click="activeTab = 'core_prefixes'"
+        >
+          Core Prefix Balancer
+        </button>
         <button :class="{ active: activeTab === 'suffixes' }" @click="activeTab = 'suffixes'">
-          Suffix Editor
+          Core Suffix Editor
         </button>
       </div>
       <router-link to="/" class="exit-link">Exit Debug</router-link>
@@ -38,7 +45,9 @@ const activeTab = ref('preview')
                 ? ArchetypeEditor
                 : activeTab === 'prefixes'
                   ? ItemPrefixEditor
-                  : CoreSuffixEditor
+                  : activeTab === 'core_prefixes'
+                    ? CorePrefixEditor
+                    : CoreSuffixEditor
           "
         />
       </keep-alive>
@@ -47,7 +56,6 @@ const activeTab = ref('preview')
 </template>
 
 <style scoped>
-/* Unchanged styles from your previous file */
 .debug-container {
   background: #111;
   color: #eee;
@@ -71,6 +79,7 @@ const activeTab = ref('preview')
 .tabs {
   display: flex;
   height: 100%;
+  overflow-x: auto; /* Handles overflow if screens get small */
 }
 
 .tabs button {
@@ -83,6 +92,7 @@ const activeTab = ref('preview')
   height: 100%;
   border-bottom: 3px solid transparent;
   transition: all 0.2s;
+  white-space: nowrap;
 }
 
 .tabs button:hover {
@@ -101,6 +111,8 @@ const activeTab = ref('preview')
   color: #f44;
   text-decoration: none;
   font-weight: bold;
+  white-space: nowrap;
+  margin-left: 10px;
 }
 
 .content-area {
