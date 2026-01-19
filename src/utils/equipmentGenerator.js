@@ -1,13 +1,10 @@
+/* src/utils/equipmentGenerator.js */
 import equipmentData from '@/data/equipmentData.json'
 import itemPrefixes from '@/data/itemPrefixes.json'
 import { generateId } from '@/utils/uuid'
 
 /**
- * Generates a specific piece of equipment.
- * @param {string} prefixId - ID from itemPrefixes
- * @param {number} contentIndex - Index in the prefix's 'contents' array
- * @param {string} rarity - 'mundane', 'artisan', 'rare', 'legendary'
- * @param {number|null} forcedStatCount - If set, overrides the random 0-4 roll
+ * Generates a specific piece of equipment as a POJO.
  */
 export function generateItem(prefixId, contentIndex, rarity = 'mundane', forcedStatCount = null) {
   const prefix = itemPrefixes.find((p) => p.id === prefixId)
@@ -19,7 +16,7 @@ export function generateItem(prefixId, contentIndex, rarity = 'mundane', forcedS
   const rules = equipmentData
 
   // 1. Base Values
-  const rarityMult = rules.rarity_mults[rarity]
+  const rarityMult = rules.rarity_mults[rarity] || 1
   const rarityBase = prefix.base_value * rarityMult
 
   // 2. Type Multipliers
@@ -38,16 +35,18 @@ export function generateItem(prefixId, contentIndex, rarity = 'mundane', forcedS
   const netValue = Math.ceil(rarityBase * typeMult)
   const cost = netValue * prefix.cost_mod
 
-  // 3. Construct Object
+  // 3. Construct Plain Object (No Class)
   const item = {
     uid: generateId(),
+    kind: 'item', // Type discriminator
     name: `${prefix.name} ${template.name}`,
     slot: template.slot,
     type: template.type,
     rarity: rarity,
     netValue: netValue,
     cost: cost,
-    stats: {},
+    baseStats: {}, // Renamed from 'stats' to clear ambiguity
+    cores: [], // Initialize empty array for POJO structure
   }
 
   if (isWeapon) {
@@ -56,14 +55,12 @@ export function generateItem(prefixId, contentIndex, rarity = 'mundane', forcedS
   }
 
   // 4. Generate Stats
-  // Use forced count if provided, otherwise random 0-4
   let statCount = forcedStatCount !== null ? forcedStatCount : Math.floor(Math.random() * 5)
 
   if (statCount > 0) {
     const availableStats = Object.keys(rules.stat_conversion)
     const pickedStats = []
 
-    // Simple no-duplicate logic
     while (pickedStats.length < statCount) {
       const randomStat = availableStats[Math.floor(Math.random() * availableStats.length)]
       if (!pickedStats.includes(randomStat)) {
@@ -73,7 +70,7 @@ export function generateItem(prefixId, contentIndex, rarity = 'mundane', forcedS
 
     pickedStats.forEach((statKey) => {
       const conversionMult = rules.stat_conversion[statKey]
-      item.stats[statKey] = netValue * conversionMult
+      item.baseStats[statKey] = netValue * conversionMult
     })
   }
 
